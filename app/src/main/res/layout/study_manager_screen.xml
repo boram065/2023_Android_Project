@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Logo -->
+            <FrameLayout
+                android:layout_marginTop="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/logo" />
+
+                <ImageButton
+                    android:id="@+id/btnBefore"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/baseline_navigate_before_24"
+                    android:backgroundTint="#47BE55"
+                    android:layout_marginRight="350dp"/>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="70dp"
+                        android:text="*"
+                        android:textColor="#FF0000"
+                        android:textSize="15dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="70dp"
+                        android:text="과제 제목 입력"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/task_Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="과제 제목을 입력해주세요!"
+                    android:textColorHint="#B6B6B6"
+                    android:textSize="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/input"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="30dp"
+                        android:text="*"
+                        android:textColor="#FF0000"
+                        android:textSize="15dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="30dp"
+                        android:text="과제 내용 입력"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/task_Content"
+                    android:layout_width="match_parent"
+                    android:layout_height="470dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="top"
+                    android:hint="과제 내용을 입력해주세요!"
+                    android:textColorHint="#B6B6B6"
+                    android:textSize="15dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:background="@drawable/input"/>
+
+            </LinearLayout>
+
+            <android.widget.Button
+                android:id="@+id/make_Task"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:text="과제 생성하기"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:backgroundTint="#47BE55"
+                android:background="@drawable/round"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

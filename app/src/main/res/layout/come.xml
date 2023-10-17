@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="33dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/studyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="java study 5일차"
+                    android:textColor="#272727"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/studyDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="24dp"
+                    android:text="2023.07.31"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/studyContext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="드디어 java study를 시작한지 5일이 되었습니다 :)\n오늘도 화이팅!"
+                android:textColor="#272727"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:paddingRight="30dp"
+                android:text="https://www.figma.com/file/PbGY1tAHqDm7lPKRe9Z81b/%EC%8A%A4%EA%B3%A0%EC%9D%B4?type=designnode-id=106-1921mode=designt=LByUvEwIGfnMVmK5-0"
+                android:textColor="#0075FF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="30dp"
+                android:text="문제를 모두 풀면 댓글로 인증해주세요!"
+                android:textColor="#272727"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="335dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="40dp"
+                android:background="#C1C1C1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        tools:ignore="ExtraText">
+
+        <EditText
+            android:id="@+id/chat"
+            android:layout_width="320dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/login_border"
+            android:hint="댓글로 인증하기"
+            android:paddingLeft="10dp"
+            android:textSize="17dp" />
+
+
+        <android.widget.Button
+            android:id="@+id/btnUpload"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="10dp"
+            android:padding="9dp"
+            android:background="@drawable/login_border"
+            android:drawableStart="@drawable/baseline_arrow_upward_24"
+            android:backgroundTint="#47BE55" />
+
+    </LinearLayout>
+
+</LinearLayout>

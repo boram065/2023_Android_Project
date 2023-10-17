@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 스크롤 할 때 이미지뷰 framelayout이 거슬림 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Logo -->
+            <FrameLayout
+                android:layout_marginTop="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/logo" />
+
+                <ImageButton
+                    android:id="@+id/btnBefore"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/baseline_navigate_before_24"
+                    android:backgroundTint="#47BE55"
+                    android:layout_marginRight="350dp"/>
+
+            </FrameLayout>
+
+            <!-- Image와 TextView 겹치기 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <!--  ImageView의 layout에 꽉 차게 크기를 맞춰 출력(비율유지)  -->
+                <ImageView
+                    android:id="@+id/study_Image"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp"
+                    android:layout_marginTop="35dp"
+                    android:src="@drawable/javastudy"
+                    android:scaleType="centerCrop"/>
+
+                <!-- Title, HashTag, Dday 레이아웃 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="60dp"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/study_Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="7dp"
+                        android:text="java study"
+                        android:textSize="40dp"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/hashtag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="#java#코딩#개발자"
+                        android:textSize="15dp"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 스터디 제목 -->
+                <TextView
+                    android:id="@+id/study_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="자바를 잘하고 싶으시다고요?\n어렵지 않습니다!"
+                    android:textColor="#47BE55"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <!-- 스터디 간략한 설명 -->
+                <TextView
+                    android:id="@+id/study_Explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="자바를 혼자 공부하려면 금방 포기하게 되고 쉽게 지치신다구요?\n그래서 이 스터디를 만들었습니다~\n\n혼자 하기 어려운 개발을 저희와 같이 해봐요!"
+                    android:textColor="#7C7C7C"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <!-- 저희의 스터디는 이렇게 진행돼요 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="저희의 스터디는 이렇게 진행돼요!"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/round"
+                    android:backgroundTint="#EEEAEAEA">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:backgroundTint="#C1C1C1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="❗"
+                                android:textColor="#FF0000"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/work1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="매일 한 문제씩 팀장이 제시해주는 문제를 풀어요!"
+                                android:textColor="#000000"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="❗"
+                                android:textColor="#FF0000"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/work2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="코딩테스트 문제는 프로그래머스 1단계 문제를 풀어요!"
+                                android:textColor="#000000"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="❗"
+                                android:textColor="#FF0000"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/work3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="문제를 모두 풀면 댓글로 이미지와 함께 인증해요~"
+                                android:textColor="#000000"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- 부가 설명 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:text="‘java study’는 기초를 다지는 것을 중요하게 생각해요!
+                        \n프로그래머스 1단계 문제를 풀어보며
+                        \n차근차근 실력을 키워나가요 :)
+                        \n\n끝까지 잘 수행하는 3분을 추첨해
+                        \n스타벅스 기프티콘 드릴게요!
+                        \n\n1등 : 스타벅스 아이스 카페 아메리카노 T 2잔
+                        \n+ 부드러운 생크림 카스테라
+                        \n2등 : 스타벅스 카페 아메리카노 T
+                        \n+ 레이어 가나슈 케이크
+                        \n3등 : 스타벅스 아이스 카페 라떼 T"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <!-- 이런 분들에게 추천해요 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="이런 분들에게 추천해요!"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/round"
+                        android:backgroundTint="#EEEAEAEA">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:backgroundTint="#C1C1C1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="💡"
+                                    android:textColor="#FF0000"
+                                    android:textSize="18dp" />
+
+                                <TextView
+                                    android:id="@+id/recom1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="자바에 관심이 있으신 분"
+                                    android:textColor="#000000"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="💡"
+                                    android:textColor="#FF0000"
+                                    android:textSize="18dp" />
+
+                                <TextView
+                                    android:id="@+id/recom2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="자바 코딩테스트를 하고싶으신 분"
+                                    android:textColor="#000000"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="💡"
+                                    android:textColor="#FF0000"
+                                    android:textSize="18dp" />
+
+                                <TextView
+                                    android:id="@+id/recom3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="다같이 공부를 하고싶으신 분"
+                                    android:textColor="#000000"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <android.widget.Button
+                    android:id="@+id/btnWork"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="#47BE55"
+                    android:text="과제로 이동"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/round" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

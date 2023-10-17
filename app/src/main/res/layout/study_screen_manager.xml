@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/logo" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/study_Image"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/javastudy"
+            android:scaleType="centerCrop" />
+
+
+        <!--  ImageView의 layout에 꽉 차게 크기를 맞춰 출력(비율유지)  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/study_NameM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="java study"
+                android:textSize="40dp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/hashtagM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="#java#코딩#개발자"
+                android:textSize="15dp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!--    &lt;!&ndash; LinearLayout 위에 TextView 넣기 &ndash;&gt;-->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/btnStudyM"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:layout_marginRight="10dp"-->
+    <!--        android:background="@drawable/study_screen_shadow"-->
+    <!--        android:orientation="vertical">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="10dp"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txtStudyM"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:textSize="20dp"-->
+    <!--                android:textStyle="bold"-->
+    <!--                android:textColor="#000000"-->
+    <!--                android:text="java study 1일차" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txtDayM"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:textSize="12dp"-->
+    <!--                android:text="2023.08.24"-->
+    <!--                android:textColor="#47BE55"-->
+    <!--                android:layout_marginLeft="10dp"/>-->
+
+    <!--        </LinearLayout>-->
+
+    <!--    </LinearLayout>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/btnStudyM2"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:layout_marginRight="10dp"-->
+    <!--        android:background="@drawable/study_screen_shadow"-->
+    <!--        android:orientation="vertical">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="10dp"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txtStudyM2"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:textSize="20dp"-->
+    <!--                android:textStyle="bold"-->
+    <!--                android:textColor="#000000"-->
+    <!--                android:text="java study 2일차" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txtDayM2"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:textSize="12dp"-->
+    <!--                android:text="2023.08.25"-->
+    <!--                android:textColor="#47BE55"-->
+    <!--                android:layout_marginLeft="10dp"/>-->
+
+    <!--        </LinearLayout>-->
+
+    <!--    </LinearLayout>-->
+
+    <ListView
+        android:id="@+id/btnMyStudy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/study_screen_shadow"
+        android:orientation="vertical" />
+
+    <android.widget.Button
+        android:id="@+id/addWork"
+        android:layout_width="180dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#47BE55"
+        android:text="과제 만들기"
+        android:textColor="@color/white"
+        android:textSize="17dp" />
+
+</LinearLayout>

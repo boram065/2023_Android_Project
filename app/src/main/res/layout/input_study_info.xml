@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Logo -->
+            <FrameLayout
+                android:layout_marginTop="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/logo" />
+
+                <ImageButton
+                    android:id="@+id/btnBefore"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/baseline_navigate_before_24"
+                    android:backgroundTint="#47BE55"
+                    android:layout_marginRight="350dp"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="스터디에 대한 설명을\n입력해주세요!"
+                android:textColor="#272727"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/study_info" />
+
+            <EditText
+                android:id="@+id/study_Name"
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/input"
+                android:paddingLeft="10dp"
+                android:hint="* 스터디 이름"
+                android:textColorHint="#B6B6B6"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/hashtag"
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input"
+                android:paddingLeft="10dp"
+                android:hint="* 해시태그 입력"
+                android:textColorHint="#B6B6B6"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/end_Day"
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input"
+                android:paddingLeft="10dp"
+                android:hint="* 스터디 마감날짜 ex)0000-00-00"
+                android:textColorHint="#B6B6B6"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/study_Title"
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input"
+                android:paddingLeft="10dp"
+                android:hint="* 스터디 제목"
+                android:textColorHint="#B6B6B6"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/study_Explain"
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input"
+                android:paddingLeft="10dp"
+                android:hint="* 스터디의 간략한 설명"
+                android:textColorHint="#B6B6B6"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="* 스터디에서는 이런 일을 해요!" />
+
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="145dp"
+                android:layout_gravity="center"
+                android:background="@drawable/input"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:padding="10dp"
+                        android:text="1."
+                        android:layout_gravity="center"
+                        android:textColor="#9C9C9C"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:id="@+id/work1"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@null"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center"
+                        android:text="2."
+                        android:textColor="#9C9C9C"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:id="@+id/work2"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@null"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center"
+                        android:text="3."
+                        android:textColor="#9C9C9C"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:id="@+id/work3"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@null"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="* 스터디에서는 이런 일을 해요!" />
+
+            <EditText
+                android:id="@+id/studyWork"
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@drawable/input"
+                android:paddingLeft="10dp"
+                android:hint="스터디에서 하는 일을 상세하게 작성해주세요"
+                android:textColorHint="#B6B6B6"
+                android:textColor="#000000"
+                android:textSize="13dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="* 이런 분들에게 추천해요!" />
+
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="145dp"
+                android:layout_gravity="center"
+                android:background="@drawable/input"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:padding="10dp"
+                        android:text="1."
+                        android:layout_gravity="center"
+                        android:textColor="#9C9C9C"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:id="@+id/recom1"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@null"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center"
+                        android:text="2."
+                        android:textColor="#9C9C9C"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:id="@+id/recom2"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@null"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center"
+                        android:text="3."
+                        android:textColor="#9C9C9C"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:id="@+id/recom3"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@null"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.widget.Button
+                android:id="@+id/btn_Next"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="46dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/round"
+                android:backgroundTint="#47BE55"
+                android:text="다음 단계로 이동"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

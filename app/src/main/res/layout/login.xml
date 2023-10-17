@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Top content: Title and Divider -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="170dp"
+            android:text="로그인"
+            android:textColor="#272727"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="63dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#47BE55" />
+    </LinearLayout>
+
+    <!-- Form fields -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="33dp">
+
+        <!-- 아이디 입력 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp"
+            android:text="아이디"
+            android:textColor="#272727"
+            android:textSize="17dp" />
+
+        <EditText
+            android:id="@+id/id"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/login_border"
+            android:hint="아이디 혹은 이메일을 입력해주세요"
+            android:paddingLeft="10dp"
+            android:textSize="17dp" />
+
+        <!-- 비밀번호 입력 -->`
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp"
+            android:text="비밀번호"
+            android:textColor="#272727"
+            android:textSize="17dp" />
+
+        <EditText
+            android:id="@+id/pw"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/login_border"
+            android:hint="8자~16자의 비밀번호를 입력해주세요"
+            android:paddingLeft="10dp"
+            android:textSize="17dp" />
+
+        <!-- 하단 링크 -->
+        <TextView
+            android:id="@+id/txtjoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원가입"
+            android:textColor="#47BE55"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <!-- 로그인 버튼 -->
+        <android.widget.Button
+            android:id="@+id/btnlogin"
+            android:layout_width="180dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round"
+            android:backgroundTint="#47BE55"
+            android:text="로그인하기 ->"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:layout_marginTop="130dp"/>
+
+    </LinearLayout>
+</LinearLayout>
