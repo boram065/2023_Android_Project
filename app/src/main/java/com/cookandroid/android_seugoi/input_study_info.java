@@ -5,15 +5,20 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class input_study_info extends AppCompatActivity {
     EditText study_Name, hashtag, end_Day, study_Title, study_Explain, work1, work2, work3, studyWork, recom1, recom2, recom3;
     Button btn_Next;
+
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {

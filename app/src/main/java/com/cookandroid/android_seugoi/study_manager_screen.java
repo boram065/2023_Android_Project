@@ -3,15 +3,22 @@ package com.cookandroid.android_seugoi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class study_manager_screen extends AppCompatActivity {
     EditText task_Title, task_Content;
     Button make_Task;
+    ArrayList<String> midList;
+    ArrayAdapter<String> adapter;
+    ListView listStudy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +32,11 @@ public class study_manager_screen extends AppCompatActivity {
         task_Title = findViewById(R.id.task_Title);
         task_Content = findViewById(R.id.task_Content);
         make_Task = findViewById(R.id.make_Task);
+
+//        // listview 추가
+//        midList = new ArrayList<String>();
+//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, midList);
+//        listStudy.setAdapter(adapter);
 
 //        // 입력한 과제 정보 가져오기
 //        String taskTitle = task_Title.getText().toString();

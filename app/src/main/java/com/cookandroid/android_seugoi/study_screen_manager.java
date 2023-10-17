@@ -29,7 +29,7 @@ public class study_screen_manager extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        ListView listView = findViewById(R.id.btnMyStudy);
+        ListView listView = findViewById(R.id.listStudy);
 
 //        // items 리스트 초기화
 //        items = new ArrayList<>();
