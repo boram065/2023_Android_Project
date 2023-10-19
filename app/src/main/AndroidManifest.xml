@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_Seugoi">
         <activity
-            android:name=".MainActivity"
+            android:name=".study_manager_screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,10 +44,10 @@
             android:exported="true">
         </activity>
 
-        <activity
-            android:name=".study_manager_screen"
-            android:exported="true">
-        </activity>
+<!--        <activity-->
+<!--            android:name=".study_manager_screen"-->
+<!--            android:exported="true">-->
+<!--        </activity>-->
 
         <activity
             android:name=".study_screen_manager"

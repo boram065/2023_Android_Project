@@ -4,13 +4,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+    <!-- Logo -->
+    <FrameLayout
         android:layout_marginTop="35dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/logo" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/logo" />
+
+        <ImageButton
+            android:id="@+id/btnBefore"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/baseline_navigate_before_24"
+            android:backgroundTint="#47BE55"
+            android:layout_marginRight="350dp"/>
+
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -56,81 +72,6 @@
         </LinearLayout>
 
     </FrameLayout>
-
-    <!--    &lt;!&ndash; LinearLayout 위에 TextView 넣기 &ndash;&gt;-->
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/btnStudyM"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginLeft="10dp"-->
-    <!--        android:layout_marginRight="10dp"-->
-    <!--        android:background="@drawable/study_screen_shadow"-->
-    <!--        android:orientation="vertical">-->
-
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_margin="10dp"-->
-    <!--            android:orientation="horizontal">-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/txtStudyM"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:textSize="20dp"-->
-    <!--                android:textStyle="bold"-->
-    <!--                android:textColor="#000000"-->
-    <!--                android:text="java study 1일차" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/txtDayM"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:textSize="12dp"-->
-    <!--                android:text="2023.08.24"-->
-    <!--                android:textColor="#47BE55"-->
-    <!--                android:layout_marginLeft="10dp"/>-->
-
-    <!--        </LinearLayout>-->
-
-    <!--    </LinearLayout>-->
-
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/btnStudyM2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginLeft="10dp"-->
-    <!--        android:layout_marginRight="10dp"-->
-    <!--        android:background="@drawable/study_screen_shadow"-->
-    <!--        android:orientation="vertical">-->
-
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_margin="10dp"-->
-    <!--            android:orientation="horizontal">-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/txtStudyM2"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:textSize="20dp"-->
-    <!--                android:textStyle="bold"-->
-    <!--                android:textColor="#000000"-->
-    <!--                android:text="java study 2일차" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/txtDayM2"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:textSize="12dp"-->
-    <!--                android:text="2023.08.25"-->
-    <!--                android:textColor="#47BE55"-->
-    <!--                android:layout_marginLeft="10dp"/>-->
-
-    <!--        </LinearLayout>-->
-
-    <!--    </LinearLayout>-->
 
     <ListView
         android:id="@+id/listStudy"

@@ -2,13 +2,18 @@ package com.cookandroid.android_seugoi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class come extends AppCompatActivity {
@@ -32,7 +37,6 @@ public class come extends AppCompatActivity {
         btnUpload = findViewById(R.id.btnUpload);
 
         Intent intent = getIntent();
-
         String title = intent.getStringExtra("taskTitle");
         studyTitle.setText(title);
 
@@ -44,5 +48,22 @@ public class come extends AppCompatActivity {
 
         String context = intent.getStringExtra("taskContent");
         studyContext.setText(context);
+
+        findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), home.class);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.btnBefore).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), study_screen_manager.class);
+                startActivity(i);
+            }
+        });
+
     }
 }
