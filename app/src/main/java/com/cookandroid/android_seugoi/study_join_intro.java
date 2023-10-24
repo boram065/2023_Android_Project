@@ -21,7 +21,9 @@ public class study_join_intro extends AppCompatActivity {
 
         // 타이틀 바 없애기
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         // TextView
         study_Name = findViewById(R.id.study_Name);
@@ -67,8 +69,7 @@ public class study_join_intro extends AppCompatActivity {
         findViewById(R.id.btnBefore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getApplicationContext(), home.class);
-                startActivity(in);
+                finish();
             }
         });
 

@@ -28,7 +28,9 @@ public class come extends AppCompatActivity {
 
         // 타이틀 바 없애기
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         studyTitle = findViewById(R.id.studyTitle);
         studyDay = findViewById(R.id.studyDay);
@@ -37,17 +39,17 @@ public class come extends AppCompatActivity {
         btnUpload = findViewById(R.id.btnUpload);
 
         Intent intent = getIntent();
-        String title = intent.getStringExtra("taskTitle");
-        studyTitle.setText(title);
+        String result = intent.getStringExtra("result");
+        if(result.equals("리스트 추가")) {
+            String title = intent.getStringExtra("taskTitle");
+            studyTitle.setText(title);
+            String txtDay = intent.getStringExtra("txtDay");
+            studyDay.setText(txtDay);
+            String context = intent.getStringExtra("taskContent");
+            studyContext.setText(context);
 
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        studyDay.setText(year + "." + month + "." + day);
+        }
 
-        String context = intent.getStringExtra("taskContent");
-        studyContext.setText(context);
 
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +62,11 @@ public class come extends AppCompatActivity {
         findViewById(R.id.btnBefore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), study_screen_manager.class);
-                startActivity(i);
+                Intent intent1 = new Intent(getApplicationContext(), study_screen_manager.class);
+                intent1.putExtra("title", studyTitle.getText().toString());
+                intent1.putExtra("day", studyDay.getText().toString());
+                intent1.putExtra("answer", true);
+                startActivity(intent1);
             }
         });
 

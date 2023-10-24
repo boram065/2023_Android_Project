@@ -1,6 +1,5 @@
 package com.cookandroid.android_seugoi;
 
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +26,9 @@ public class input_study_info extends AppCompatActivity {
 
         // 타이틀 바 없애기
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         // EditText
         study_Name = findViewById(R.id.study_Name);
@@ -73,8 +74,7 @@ public class input_study_info extends AppCompatActivity {
         findViewById(R.id.btnBefore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getApplicationContext(), home.class);
-                startActivity(in);
+                finish();
             }
         });
     }

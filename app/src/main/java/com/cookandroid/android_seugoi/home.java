@@ -28,7 +28,9 @@ public class home extends AppCompatActivity {
 
         // 타이틀 바 없애기
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         listView = findViewById(R.id.listMystudy);
         studyList = new ArrayList<>();

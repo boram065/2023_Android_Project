@@ -1,31 +1,21 @@
 package com.cookandroid.android_seugoi;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class study_screen_manager extends AppCompatActivity {
-    TextView study_NameM, hashtagM;
     ListView listView;
     private ArrayList<study_screen_manager_items> items;
     private study_screen_manager_listview_Adapter mAdapter;
 
-    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,42 +23,50 @@ public class study_screen_manager extends AppCompatActivity {
 
         // 타이틀 바 없애기
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         listView = findViewById(R.id.listStudy);
 
         // items 리스트 초기화
-        items = new ArrayList<>();
+        if (items == null) {
+            items = new ArrayList<>();
+        }
         mAdapter = new study_screen_manager_listview_Adapter(items, this);
         listView.setAdapter(mAdapter);
 
-        Intent in = getIntent();
-        String taskTitle = in.getStringExtra("taskTitle");
+        Intent intent = getIntent();
+        String taskTitle = intent.getStringExtra("title");
+        String txtDay = intent.getStringExtra("day");
+        boolean answer = intent.getBooleanExtra("answer", false);
+
+        // 과제 생성 버튼 클릭시 리스트 추가
+        if (answer) {
+            // 가져온 데이터를 바탕으로 리스트 추가
+            study_screen_manager_items newItem = new study_screen_manager_items(taskTitle, txtDay);
+            items.add(newItem);
+            mAdapter.notifyDataSetChanged();
+        }
+
+        // 버튼 클릭 하면 list 삭제
+//        if (Integer.parseInt(taskTitle) > -1) {
+//            item.remove(Integer.parseInt(taskTitle));
+//            mAdapter.notifyDataSetChanged();
+//        }
 
         findViewById(R.id.addWork).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 현재 날짜 구하기 (예: 2023.10.01)
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.getDefault());
-                String txtDay = dateFormat.format(new Date());
-
-                // 과제 제목과 내용이 비어있지 않을 때만 리스트에 추가
-                if (!taskTitle.isEmpty()) {
-                    study_screen_manager_items newItem = new study_screen_manager_items(taskTitle, txtDay);
-                    items.add(newItem);
-                    mAdapter.notifyDataSetChanged();
-
-                    Intent intent = new Intent(getApplicationContext(), study_manager_screen.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                }
+                Intent in = new Intent(getApplicationContext(), study_manager_screen.class);
+                startActivity(in);
             }
         });
 
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 홈 화면으로 이동
                 Intent i = new Intent(getApplicationContext(), home.class);
                 startActivity(i);
             }
@@ -77,17 +75,23 @@ public class study_screen_manager extends AppCompatActivity {
         findViewById(R.id.btnBefore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), home.class);
-                startActivity(i);
+                finish();
             }
         });
 
-//        listView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent in = new Intent(getApplicationContext(), come.class);
-//                startActivity(in);
-//            }
-//        });
+        // 리스트 아이템 클릭 시 상세 정보 화면으로 이동
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                study_screen_manager_items selectedItem = items.get(position);
+                String taskTitle = selectedItem.getTxtStudyTitle();
+                String taskDay = selectedItem.getTxtDay();
+
+                Intent intent = new Intent(getApplicationContext(), come.class);
+                intent.putExtra("taskTitle", taskTitle);
+                intent.putExtra("taskDay", taskDay);
+                startActivity(intent);
+            }
+        });
     }
 }

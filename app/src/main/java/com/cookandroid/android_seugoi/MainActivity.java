@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
         // 타이틀 바 없애기
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         // 화면이 띄워진 후 일정 시간(2초)이 지나면 MainActivity로 이동
         new Handler().postDelayed(new Runnable() {

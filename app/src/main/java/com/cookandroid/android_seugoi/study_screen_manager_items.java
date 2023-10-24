@@ -1,7 +1,5 @@
 package com.cookandroid.android_seugoi;
 
-import java.util.Calendar;
-
 public class study_screen_manager_items {
     String txtStudyTitle, txtDay;
 
