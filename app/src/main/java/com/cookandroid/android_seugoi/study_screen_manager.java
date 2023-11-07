@@ -1,21 +1,23 @@
 package com.cookandroid.android_seugoi;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 
 public class study_screen_manager extends AppCompatActivity {
     ListView listView;
     private ArrayList<study_screen_manager_items> items;
     private study_screen_manager_listview_Adapter mAdapter;
+    TaskDataSource dataSource;
 
-
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,30 +32,28 @@ public class study_screen_manager extends AppCompatActivity {
         listView = findViewById(R.id.listStudy);
 
         // items 리스트 초기화
-        if (items == null) {
-            items = new ArrayList<>();
-        }
+        items = new ArrayList<>();
         mAdapter = new study_screen_manager_listview_Adapter(items, this);
         listView.setAdapter(mAdapter);
 
-        Intent intent = getIntent();
-        String taskTitle = intent.getStringExtra("title");
-        String txtDay = intent.getStringExtra("day");
-        boolean answer = intent.getBooleanExtra("answer", false);
+        // 데이터베이스 관련 초기화
+        dataSource = new TaskDataSource(this);
+        dataSource.open();
 
-        // 과제 생성 버튼 클릭시 리스트 추가
-        if (answer) {
-            // 가져온 데이터를 바탕으로 리스트 추가
-            study_screen_manager_items newItem = new study_screen_manager_items(taskTitle, txtDay);
-            items.add(newItem);
-            mAdapter.notifyDataSetChanged();
+        // 데이터베이스에서 taskTitle과 day를 불러와 리스트에 추가
+        Cursor cursor = dataSource.getAllTasks();
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String taskTitle = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_TITLE));
+                String day = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_DAY));
+
+                // 가져온 데이터로 리스트 아이템 생성
+                study_screen_manager_items listItem = new study_screen_manager_items(taskTitle, day);
+                items.add(listItem);
+            }
+            cursor.close();
         }
-
-        // 버튼 클릭 하면 list 삭제
-//        if (Integer.parseInt(taskTitle) > -1) {
-//            item.remove(Integer.parseInt(taskTitle));
-//            mAdapter.notifyDataSetChanged();
-//        }
+        mAdapter.notifyDataSetChanged();
 
         findViewById(R.id.addWork).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,8 @@ public class study_screen_manager extends AppCompatActivity {
         findViewById(R.id.btnBefore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent i = new Intent(getApplicationContext(), home.class);
+                startActivity(i);
             }
         });
 

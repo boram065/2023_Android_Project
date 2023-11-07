@@ -2,9 +2,11 @@ package com.cookandroid.android_seugoi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -12,8 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class study_join_intro extends AppCompatActivity {
     TextView study_Name, hashtag, study_Title, study_Explain, work1, work2, work3, studyWork, recom1, recom2, recom3;
+    Button btnBefore, btnWork;
+    ImageView logo;
+    ClassDataSource dataSource;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "Range", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,46 +43,72 @@ public class study_join_intro extends AppCompatActivity {
         recom2 = findViewById(R.id.recom2);
         recom3 = findViewById(R.id.recom3);
 
-//        // input_study_info
-//        study_Name.setText("");
-//        hashtag.setText("");
-//        study_Title.setText("");
-//        study_Explain.setText("");
-//        work1.setText("");
-//        work2.setText("");
-//        work3.setText("");
-//        studyWork.setText("");
-//        recom1.setText("");
-//        recom2.setText("");
-//        recom3.setText("");
+        // button
+        btnBefore =  findViewById(R.id.btnBefore);
+        btnWork = findViewById(R.id.btnWork);
+        logo = findViewById(R.id.logo);
 
-//        Intent intent = getIntent();
+        Intent intent = getIntent();
+        String studyName = intent.getStringExtra("studyName");
+        String studyHashTag = intent.getStringExtra("hashTag");
+        String studyDay = intent.getStringExtra("day");
+        System.out.println("studyName"+ studyName);
 
-//        // input_study_info
-//        study_Name.append(intent.getStringExtra("studyName"));
-//        hashtag.append(intent.getStringExtra("studyTag"));
-//        study_Title.append(intent.getStringExtra("studyTitle"));
-//        study_Explain.append(intent.getStringExtra("studyExplain"));
-//        work1.append(intent.getStringExtra("studyWork1"));
-//        work2.append(intent.getStringExtra("studyWork2"));
-//        work3.append(intent.getStringExtra("studyWork3"));
-//        studyWork.append(intent.getStringExtra("work"));
-//        recom1.append(intent.getStringExtra("re1"));
-//        recom2.append(intent.getStringExtra("re2"));
-//        recom3.append(intent.getStringExtra("re3"));
+        dataSource = new ClassDataSource(this);
+        dataSource.open();
 
-        findViewById(R.id.btnBefore).setOnClickListener(new View.OnClickListener() {
+        Cursor cursor = dataSource.getClassByTitleAndHashtagAndDay(studyName, studyHashTag, studyDay);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String name = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_NAME));
+            String hashTag = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_HASHTAG));
+            String title = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_TITLE));
+            String explain = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_EXPLAIN));
+            String Work1 = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_WORK1));
+            String Work2 = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_WORK2));
+            String Work3 = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_WORK3));
+            String studywork = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_STUDYWORK));
+            String Recom1 = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_RECOM1));
+            String Recom2 = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_RECOM2));
+            String Recom3 = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_RECOM3));
+
+            study_Name.setText(name);
+            hashtag.setText(hashTag);
+            study_Title.setText(title);
+            study_Explain.setText(explain);
+            work1.setText(Work1);
+            work2.setText(Work2);
+            work3.setText(Work3);
+            studyWork.setText(studywork);
+            recom1.setText(Recom1);
+            recom2.setText(Recom2);
+            recom3.setText(Recom3);
+
+            cursor.close();
+        }
+        dataSource.close();
+
+        btnBefore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent i = new Intent(getApplicationContext(), home.class);
+                startActivity(i);
             }
         });
 
-        findViewById(R.id.btnWork).setOnClickListener(new View.OnClickListener() {
+        btnWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), study_screen_manager.class);
                 startActivity(i);
+            }
+        });
+
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), home.class);
+                startActivity(in);
             }
         });
     }

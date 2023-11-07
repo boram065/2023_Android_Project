@@ -2,12 +2,17 @@ package com.cookandroid.android_seugoi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +23,14 @@ import java.util.Calendar;
 public class home extends AppCompatActivity {
     private ArrayList<home_items> studyList;
     private home_listview_Adapter adapter;
-    private ListView listView;
+    ListView listView;
+    EditText edtSearch;
+    ImageView imgSearch;
+    TextView yourName;
 
-    @SuppressLint("MissingInflatedId")
+    ClassDataSource dataSource;
+
+    @SuppressLint({"MissingInflatedId", "Range"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,69 +42,75 @@ public class home extends AppCompatActivity {
             actionBar.hide();
         }
 
+        edtSearch = findViewById(R.id.edtSearch);
+        imgSearch = findViewById(R.id.imgSearch);
+        yourName = findViewById(R.id.yourName);
         listView = findViewById(R.id.listMystudy);
+
         studyList = new ArrayList<>();
-        adapter = new home_listview_Adapter(this, studyList);
+        adapter = new home_listview_Adapter(studyList, this);
         listView.setAdapter(adapter);
 
-        Intent in = getIntent();
-        String studyName = in.getStringExtra("studyName");
-        String hashTag = in.getStringExtra("hashTag");
+        dataSource = new ClassDataSource(this);
+        dataSource.open();
 
-        // txtDay 구하기
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        String txtDay =  (year + "." + month + "." + day);
+        loadStudyList(); // 리스트를 로드하는 함수를 호출
+
+        Cursor cursor = dataSource.getAllClass();
+        if(cursor != null) {
+            while(cursor.moveToNext()) {
+                String title = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_NAME));
+                String hashTag = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_HASHTAG));
+                String day = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_DAY));
+
+                home_items homeItems = new home_items(title, hashTag, day);
+                studyList.add(homeItems);
+            }
+            cursor.close();
+        }
+        adapter.notifyDataSetChanged();
 
         findViewById(R.id.addStudy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                // 새로운 스터디 아이템을 추가
-//                home_items newStudy = new home_items(studyName, hashTag, txtDay);
-//                studyList.add(newStudy);
-//                // 어댑터를 통해 ListView 갱신
-//                adapter.notifyDataSetChanged();
-
-                // 화면 이동
                 Intent intent = new Intent(getApplicationContext(), input_study_info.class);
                 startActivity(intent);
             }
         });
 
-//        // EditText의 텍스트 변경을 감지하여 리스트 필터링
-//        findViewById(R.id.search).addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                filter(editable.toString());
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                home_items selectedItem = studyList.get(position);
+                String title = selectedItem.getStudyName();
+                String hashtag = selectedItem.getHashTag();
+                String day = selectedItem.getDay();
+
+                Intent i = new Intent(getApplicationContext(), study_join_intro.class);
+                i.putExtra("studyName", title);
+                i.putExtra("hashTag", hashtag);
+                i.putExtra("day", day);
+                startActivity(i);
+            }
+        });
     }
 
-//    private void filter(String text) {
-//        ArrayList<home_items> filteredList = new ArrayList<>();
-//        if (text.isEmpty()) {
-//            // 검색어가 없을 때는 원본 리스트를 모두 보여줍니다.
-//            filteredList.addAll(studyList);
-//        } else {
-//            // 검색어와 일치하는 아이템만 필터링합니다.
-//            for (home_items item : studyList) {
-//                if (item.getStudyName().toLowerCase().contains(text.toLowerCase())) {
-//                    filteredList.add(item);
-//                }
-//            }
-//        }
-//        // 어댑터를 업데이트하여 변경된 리스트를 보여줍니다.
-//        adapter.clear();
-//        adapter.addAll(filteredList);
-//    }
+    // 리스트를 로드하는 함수
+    @SuppressLint("Range")
+    private void loadStudyList() {
+        Cursor cursor = dataSource.getAllClass();
+        if (cursor != null) {
+            studyList.clear(); // 기존 리스트를 비움
+            while (cursor.moveToNext()) {
+                String title = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_NAME));
+                String hashTag = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_HASHTAG));
+                String day = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_DAY));
+
+                home_items homeItems = new home_items(title, hashTag, day);
+                studyList.add(homeItems);
+            }
+            cursor.close();
+            adapter.notifyDataSetChanged(); // 리스트가 업데이트된 것을 알림
+        }
+    }
 }

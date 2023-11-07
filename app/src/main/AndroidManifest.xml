@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_Seugoi">
         <activity
-            android:name=".MainActivity"
+            android:name=".home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,10 +29,10 @@
             android:exported="true">
         </activity>
 
-        <activity
-            android:name=".home"
-            android:exported="true">
-        </activity>
+<!--        <activity-->
+<!--            android:name=".home"-->
+<!--            android:exported="true">-->
+<!--        </activity>-->
 
         <activity
             android:name=".input_study_info"

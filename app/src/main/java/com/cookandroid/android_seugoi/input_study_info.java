@@ -3,20 +3,28 @@ package com.cookandroid.android_seugoi;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class input_study_info extends AppCompatActivity {
     EditText study_Name, hashtag, end_Day, study_Title, study_Explain, work1, work2, work3, studyWork, recom1, recom2, recom3;
     Button btn_Next;
+    ClassDataSource dataSource;
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -47,34 +55,67 @@ public class input_study_info extends AppCompatActivity {
         // Button
         btn_Next = findViewById(R.id.btn_Next);
 
+        // 데이터 베이스
+        dataSource = new ClassDataSource(this);
+        dataSource.open();
+
         btn_Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(input_study_info.this, study_join_intro.class);
-//                intent.putExtra("studyName", study_Name.getText().toString());
-//                intent.putExtra("studyTag", hashtag.getText().toString());
-//                intent.putExtra("studyTitle", study_Title.getText().toString());
-//                intent.putExtra("studyExplain", study_Explain.getText().toString());
-//                intent.putExtra("studyWork1", work1.getText().toString());
-//                intent.putExtra("studyWork2", work2.getText().toString());
-//                intent.putExtra("studyWork3", work3.getText().toString());
-//                intent.putExtra("work", studyWork.getText().toString());
-//                intent.putExtra("re1", recom1.getText().toString());
-//                intent.putExtra("re2", recom2.getText().toString());
-//                intent.putExtra("re3", recom3.getText().toString());
+                String name = study_Name.getText().toString();
+                String hashTag = hashtag.getText().toString();
+                String title = study_Title.getText().toString();
+                String explain = study_Explain.getText().toString();
+                String Work1 = work1.getText().toString();
+                String Work2 = work2.getText().toString();
+                String Work3 = work3.getText().toString();
+                String studywork = studyWork.getText().toString();
+                String Recom1 = recom1.getText().toString();
+                String Recom2 = recom2.getText().toString();
+                String Recom3 = recom3.getText().toString();
+                Calendar calendar = Calendar.getInstance();
+                // 서울 지금 현재 날짜 가져오기
+                TimeZone seoulTimeZone = TimeZone.getTimeZone("Asia/Seoul");
+                calendar.setTimeZone(seoulTimeZone);
+                Date date = calendar.getTime();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+                String txtDay = sdf.format(date);
 
-//                Intent i = new Intent(input_study_info.this, home.class);
-//                i.putExtra("studyName", study_Name.getText().toString());
+                boolean ClassCheck = false;
 
-                // btn_Next를 누르면 study_join_intro로 넘어가기
+                if(ClassCheck) {
+                    Toast.makeText(getApplicationContext(), "같은 제목의 클래스가 이미 존재합니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    long newRowId = dataSource.createClass(name, hashTag, title, explain, Work1, Work2, Work3, studywork, Recom1, Recom2, Recom3, txtDay);
+
+                    if(newRowId != -1) {
+                        Toast.makeText(getApplicationContext(), "클래스가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "클래스 추가에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                Intent intent = new Intent(getApplicationContext(), study_join_intro.class);
+                intent.putExtra("name", name);
+                intent.putExtra("hashTag", hashTag);
+                intent.putExtra("day", txtDay);
                 startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), home.class);
+                startActivity(in);
             }
         });
 
         findViewById(R.id.btnBefore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent in = new Intent(getApplicationContext(), home.class);
+                startActivity(in);
             }
         });
     }

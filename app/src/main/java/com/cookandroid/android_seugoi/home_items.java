@@ -1,16 +1,12 @@
 package com.cookandroid.android_seugoi;
 
-import java.util.Calendar;
-
 public class home_items {
-    private String studyName;
-    private String hashTag;
-    private String txtDay;
+    String studyName, hashTag, day;
 
-    public home_items(String studyName, String hashTag, String txtDay) {
+    public home_items(String studyName, String hashTag, String day) {
         this.studyName = studyName;
         this.hashTag = hashTag;
-        this.txtDay = txtDay;
+        this.day = day;
     }
 
     public String getStudyName() {
@@ -21,7 +17,7 @@ public class home_items {
         return hashTag;
     }
 
-    public String getTxtDay() {
-        return txtDay;
+    public String getDay() {
+        return day;
     }
 }

@@ -1,6 +1,8 @@
 package com.cookandroid.android_seugoi;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,9 @@ public class come extends AppCompatActivity {
     EditText chat;
     Button btnUpload;
 
+    TaskDataSource dataSource;
+
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +44,27 @@ public class come extends AppCompatActivity {
         btnUpload = findViewById(R.id.btnUpload);
 
         Intent intent = getIntent();
-        String result = intent.getStringExtra("result");
-        if(result.equals("리스트 추가")) {
-            String title = intent.getStringExtra("taskTitle");
-            studyTitle.setText(title);
-            String txtDay = intent.getStringExtra("txtDay");
-            studyDay.setText(txtDay);
-            String context = intent.getStringExtra("taskContent");
-            studyContext.setText(context);
+        String title = intent.getStringExtra("taskTitle");
+        String day = intent.getStringExtra("taskDay");
 
+        dataSource = new TaskDataSource(this);
+        dataSource.open();
+
+        // 데이터베이스에서 정보 가져오기
+        Cursor cursor = dataSource.getTaskByTitleAndDay(title, day);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String taskTitle = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_TITLE));
+            String taskContent = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_CONTENT));
+            String taskDay = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_DAY));
+
+            // 정보를 TextView 등에 표시
+            studyTitle.setText(taskTitle);
+            studyContext.setText(taskContent);
+            studyDay.setText(taskDay);
+            cursor.close();
         }
-
+        dataSource.close();
 
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +78,6 @@ public class come extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent(getApplicationContext(), study_screen_manager.class);
-                intent1.putExtra("title", studyTitle.getText().toString());
-                intent1.putExtra("day", studyDay.getText().toString());
-                intent1.putExtra("answer", true);
                 startActivity(intent1);
             }
         });

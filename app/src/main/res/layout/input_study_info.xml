@@ -26,6 +26,7 @@
                 android:layout_gravity="center">
 
                 <ImageView
+                    android:id="@+id/logo"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_horizontal"
@@ -320,7 +321,7 @@
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/round"
                 android:backgroundTint="#47BE55"
-                android:text="다음 단계로 이동"
+                android:text="클래스 만들기"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
 
