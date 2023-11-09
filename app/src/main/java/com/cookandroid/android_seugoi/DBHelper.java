@@ -7,71 +7,83 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper { //DB테이블 생성
-    public static final String USER_TABLE = "userTable"; // 로그인 테이블
-    public static final String STUDY_TABLE = "studyTable"; // 스터디 테이블
-    public static final String ASSIGNMENT_TABLE = "assignmentTable";
-    public static final String SUBMISSION_TABLE = "submissionTable";
 
-    public static final String USER_ID = "userID";
-    public static final String USER_PASS = "userPass";
-    public static final String USER_NAME = "userName";
-    public static final String USER_EMAIL = "userEmail";
+    //유저 테이블
+    public static String userID= "userID";
+    public static String userPass= "userPass";
+    public static String userName= "userName";
+    public static String userEmail= "userEmail";
 
-    public static final String STUDY_ID = "studyID";
-    public static final String STUDY_NAME = "studyName";
-    public static final String STUDY_DESCRIPTION = "studyDescription";
-    public static final String STUDY_CREATOR_ID = "creatorID";
+    //스터디 테이블
+    public static String studyID= "studyID";
+    public static String studyName= "studyName";
+    public static String studyDescription= "studyDescription"; // 스터디 설명
+    public static String creatorID= "creatorID"; // 스터디 가입한 사용자
 
-    public static final String ASSIGNMENT_ID = "assignmentID";
-    public static final String ASSIGNMENT_TITLE = "assignmentTitle";
-    public static final String ASSIGNMENT_DESCRIPTION = "assignmentDescription";
-    public static final String ASSIGNMENT_DUE_DATE = "dueDate";
-    public static final String ASSIGNMENT_CREATOR_ID = "creatorID";
+    //스터디 참여 테이블
+    public static String assignmentID = "assignmentID";
+    public static String assignmentTitle = "assignmentTitle";
+    public static String assignmentDescription = "assignmentDescription";
+    public static String dueDate = "dueDate";
 
-    public static final String SUBMISSION_ID = "submissionID";
-    public static final String SUBMISSION_USER_ID = "userID";
-    public static final String SUBMISSION_ASSIGNMENT_ID = "assignmentID";
-    public static final String SUBMISSION_DATE = "submissionDate";
-    public static final String SUBMISSION_CONTENT = "submissionContent";
+
+    //creatorID 필요
+
+    //스터디 과제 테이블
+    public static String submissionID = "assignmentID";
+    public static String userSubID = "userID";
+    // 테이블 만들 때는 assignmentID와 dueDate, creatorID 가 필요
+    public static String submissionTitle = "submissionTitle";
+    public static String submissionContent = "submissionContent";
+
+
+
 
     public DBHelper(@Nullable Context context) {
         super(context, "seugoiUser.db", null, 1);
     }
-    private static final String CREATE_USER_TABLE = "CREATE TABLE " + USER_TABLE + " (" +
-            USER_ID + " VARCHAR(20) PRIMARY KEY, " +
-            USER_PASS + " VARCHAR(20), " +
-            USER_NAME + " VARCHAR(20), " +
-            USER_EMAIL + " VARCHAR(30)" +
+    private static String createUserTable = "CREATE TABLE userTable (" +
+            userID + " VARCHAR(20) PRIMARY KEY, " +
+            userPass + " VARCHAR(20), " +
+            userName + " VARCHAR(20), " +
+            userEmail + " VARCHAR(30)" +
             ")";
 
-    private static final String CREATE_STUDY_TABLE = "CREATE TABLE " + STUDY_TABLE + " (" +
-            STUDY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            STUDY_NAME + " TEXT, " +
-            STUDY_DESCRIPTION + " TEXT, " +
-            STUDY_CREATOR_ID + " INTEGER" +
+    private static final String createStudyTable = "CREATE TABLE studyTable (" +
+            studyID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            studyName + " TEXT, " +
+            studyDescription + " TEXT, " +
+            creatorID + " INTEGER" +
             ")";
 
-    private static final String CREATE_ASSIGNMENT_TABLE = "CREATE TABLE " + ASSIGNMENT_TABLE + " (" +
-            ASSIGNMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            STUDY_ID + " INTEGER, " +
-            ASSIGNMENT_TITLE + " TEXT, " +
-            ASSIGNMENT_DESCRIPTION + " TEXT, " +
-            ASSIGNMENT_DUE_DATE + " TEXT, " +
-            ASSIGNMENT_CREATOR_ID + " INTEGER" +
+    private static final String createAssignmentTable = "CREATE TABLE  assignmentTable (" +
+            assignmentID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            assignmentTitle + " INTEGER, " +
+            assignmentTitle + " TEXT, " +
+            assignmentDescription + " TEXT, " +
+            dueDate + " TEXT, " +
+            creatorID + " INTEGER" +
             ")";
 
-    private static final String CREATE_SUBMISSION_TABLE = "CREATE TABLE " + SUBMISSION_TABLE + " (" +
-            SUBMISSION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            SUBMISSION_USER_ID + " INTEGER, " +
-            SUBMISSION_ASSIGNMENT_ID + " INTEGER, " +
-            SUBMISSION_DATE + " TEXT, " +
-            SUBMISSION_CONTENT + " TEXT" +
+    private static final String createSubmissionTable = "CREATE TABLE createSubmissionTable (" +
+            submissionID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            userSubID + " INTEGER, " +
+            assignmentID + " INTEGER, " +
+            dueDate + " TEXT, " +
+            creatorID+" TEXT, "+
+            submissionTitle + " TEXT, " +
+            submissionContent + " TEXT" +
             ")";
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) { //user 테이블 생성
-        String sql="CREATE TABLE userTable(userID VARCHAR(20) PRIMARY KEY, userPass VARCHAR(20), userName VARCHAR(20), userEmail VARCHAR(30))";
-        sqLiteDatabase.execSQL(sql); //sql 실행
+//        String sql="CREATE TABLE userTable(userID VARCHAR(20) PRIMARY KEY, userPass VARCHAR(20), userName VARCHAR(20), userEmail VARCHAR(30))";
+//        sqLiteDatabase.execSQL(sql); //sql 실행
+        sqLiteDatabase.execSQL(createUserTable);
+        sqLiteDatabase.execSQL(createStudyTable);
+        sqLiteDatabase.execSQL(createAssignmentTable);
+        sqLiteDatabase.execSQL(createSubmissionTable);
+
     }
 
     @Override

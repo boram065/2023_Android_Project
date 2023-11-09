@@ -3,6 +3,7 @@ package com.cookandroid.android_seugoi;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +24,10 @@ public class come extends AppCompatActivity {
     EditText chat;
     Button btnUpload;
 
-    TaskDataSource dataSource;
+    DBHelper myHelper;
+    SQLiteDatabase sqlDB;
+
+//    TaskDataSource dataSource;
 
     @SuppressLint("Range")
     @Override
@@ -45,26 +49,35 @@ public class come extends AppCompatActivity {
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("taskTitle");
+        String content = intent.getStringExtra("taskContent");
         String day = intent.getStringExtra("taskDay");
 
-        dataSource = new TaskDataSource(this);
-        dataSource.open();
+        Cursor cursor;
+        cursor = sqlDB.rawQuery("SELECT SUBMISSION_TITME, SUBMISSION_CONTENT, SUBMISSION_DATE FROM submission where submissionTitle='"+title+"' and submissionContent='"+content+"' and submissionDate='"+day+"';", null);
 
-        // 데이터베이스에서 정보 가져오기
-        Cursor cursor = dataSource.getTaskByTitleAndDay(title, day);
+        studyTitle.setText(title);
+        studyContext.setText(content);
+        studyDay.setText(day);
 
-        if (cursor != null && cursor.moveToFirst()) {
-            String taskTitle = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_TITLE));
-            String taskContent = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_CONTENT));
-            String taskDay = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_DAY));
 
-            // 정보를 TextView 등에 표시
-            studyTitle.setText(taskTitle);
-            studyContext.setText(taskContent);
-            studyDay.setText(taskDay);
-            cursor.close();
-        }
-        dataSource.close();
+//        dataSource = new TaskDataSource(this);
+//        dataSource.open();
+//
+//        // 데이터베이스에서 정보 가져오기
+//        Cursor cursor = dataSource.getTaskByTitleAndDay(title, day);
+//
+//        if (cursor != null && cursor.moveToFirst()) {
+//            String taskTitle = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_TITLE));
+//            String taskContent = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_CONTENT));
+//            String taskDay = cursor.getString(cursor.getColumnIndex(TaskDBHelper.COLUMN_DAY));
+//
+//            // 정보를 TextView 등에 표시
+//            studyTitle.setText(taskTitle);
+//            studyContext.setText(taskContent);
+//            studyDay.setText(taskDay);
+//            cursor.close();
+//        }
+//        dataSource.close();
 
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
