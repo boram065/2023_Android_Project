@@ -42,8 +42,8 @@ public class home extends AppCompatActivity {
             actionBar.hide();
         }
 
-        edtSearch = findViewById(R.id.edtSearch);
-        imgSearch = findViewById(R.id.imgSearch);
+//        edtSearch = findViewById(R.id.edtSearch);
+//        imgSearch = findViewById(R.id.imgSearch);
         yourName = findViewById(R.id.yourName);
         listView = findViewById(R.id.listMystudy);
 
@@ -55,20 +55,6 @@ public class home extends AppCompatActivity {
         dataSource.open();
 
         loadStudyList(); // 리스트를 로드하는 함수를 호출
-
-        Cursor cursor = dataSource.getAllClass();
-        if(cursor != null) {
-            while(cursor.moveToNext()) {
-                String title = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_NAME));
-                String hashTag = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_HASHTAG));
-                String day = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_DAY));
-
-                home_items homeItems = new home_items(title, hashTag, day);
-                studyList.add(homeItems);
-            }
-            cursor.close();
-        }
-        adapter.notifyDataSetChanged();
 
         findViewById(R.id.addStudy).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,10 +84,10 @@ public class home extends AppCompatActivity {
     // 리스트를 로드하는 함수
     @SuppressLint("Range")
     private void loadStudyList() {
+        studyList.clear();
         Cursor cursor = dataSource.getAllClass();
-        if (cursor != null) {
-            studyList.clear(); // 기존 리스트를 비움
-            while (cursor.moveToNext()) {
+        if(cursor != null) {
+            while(cursor.moveToNext()) {
                 String title = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_NAME));
                 String hashTag = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_HASHTAG));
                 String day = cursor.getString(cursor.getColumnIndex(ClassDBHelper.COLUMN_DAY));
@@ -110,7 +96,7 @@ public class home extends AppCompatActivity {
                 studyList.add(homeItems);
             }
             cursor.close();
-            adapter.notifyDataSetChanged(); // 리스트가 업데이트된 것을 알림
         }
+        adapter.notifyDataSetChanged();
     }
 }
